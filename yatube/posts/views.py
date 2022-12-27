@@ -17,4 +17,6 @@ def group_list(request):
 # Страница с информацией об одном сорте мороженого;
 # view-функция принимает параметр pk из path()
 def group_posts(request, slug):
-    return HttpResponse(f'Пост номер {slug}')
+    template = 'posts/index.html'
+    return render(request, template)
+    # return HttpResponse(f'Пост номер {slug}')
