@@ -9,7 +9,7 @@ class Group(models.Model):
     slug = models.TextField()
     description = models.TextField()
 
-    def __str__(self) -> str:        
+    def __str__(self) -> str:
         return f'{self.title}'
 
 

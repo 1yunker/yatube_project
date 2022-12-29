@@ -8,14 +8,14 @@ from .models import Post, Group
 # Главная страница
 def index(request):
     # Адрес шаблона сохраним в переменную, это не обязательно, но удобно
-    template = 'base.html'
+    template = 'posts/index.html'
     # Строку, которую надо вывести на страницу, тоже сохраним в переменную
     title = 'Последние обновления на сайте'
     text = 'Это главная страница проекта Yatube'
     # Одна строка вместо тысячи слов на SQL:
     # в переменную posts будет сохранена выборка из 10 объектов модели Post,
     # отсортированных по полю pub_date по убыванию (от больших значений к меньшим)
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.order_by('-pub_date')[:3]
     # В словаре context отправляем информацию в шаблон
 
     # Словарь с данными принято называть context
@@ -32,7 +32,7 @@ def index(request):
 
 # Страница со списком постов
 def group_list(request):
-    template = 'posts/group_list.html'
+    template = 'base.html'
     title = 'Лев Толстой – зеркало русской революции.'
     text = 'Лев Толстой'
     context = {
@@ -57,9 +57,9 @@ def group_posts(request, slug):
     # Метод .filter позволяет ограничить поиск по критериям.
     # Это аналог добавления
     # условия WHERE group_id = {group_id}
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = Post.objects.filter(group=group).order_by('-pub_date')[:2]
 
-    context = {        
+    context = {
         'group': group,
         'posts': posts,
     }
